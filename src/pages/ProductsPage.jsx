@@ -10,7 +10,7 @@ export default function ProductsPage() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const base = import.meta.env.VITE_API_BASE || 'http://localhost:4000'
+        const base = import.meta.env.VITE_API_BASE || `http://${window.location.hostname}:4000`
         const res = await axios.get(`${base}/api/products`)
         setProducts(res.data)
       } catch (e) {
@@ -28,7 +28,7 @@ export default function ProductsPage() {
     <div className="grid">
       {products.map((p) => (
         <div key={p.id} className="card">
-          <img src={p.imageUrl} alt={p.name} />
+          <img src={`${(import.meta.env.VITE_API_BASE || `http://${window.location.hostname}:4000`)}/api/assets/${p.id}`} alt={p.name} />
           <h3>{p.name}</h3>
           <p>{p.description}</p>
           <strong>${p.price.toFixed(2)}</strong>
