@@ -8,7 +8,7 @@ function App() {
         <nav className="nav">
           <Link to="/">Products</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/checkout">Checkout</Link>
+          <Link to="/checkout">Checkout madi</Link>
         </nav>
       </header>
       <main className="main">
