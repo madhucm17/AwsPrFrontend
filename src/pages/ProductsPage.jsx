@@ -9,12 +9,12 @@ export default function ProductsPage() {
 
   useEffect(() => {
     async function fetchProducts() {
+      const base = import.meta.env.VITE_API_BASE || `http://${window.location.hostname}:4000`
       try {
-        const base = import.meta.env.VITE_API_BASE || `http://${window.location.hostname}:4000`
-        const res = await axios.get(`${base}/api/products`)
+        const res = await axios.get(`${base}/api/products`, { timeout: 5000 })
         setProducts(res.data)
       } catch (e) {
-        console.error(e)
+        console.error('Products fetch failed', e?.message || e)
       } finally {
         setLoading(false)
       }
